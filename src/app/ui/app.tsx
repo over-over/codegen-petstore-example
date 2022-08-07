@@ -1,21 +1,14 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  Link,
-  Paper,
-  Stack,
-  Typography,
-  Container,
-} from '@mui/material';
-import { useState } from 'react';
+import { Container } from '@mui/material';
+import { ReactNode } from 'react';
 
-export const App = () => {
-  const [count, setCount] = useState(0);
+type Props = {
+  children?: ReactNode;
+};
 
+export const App = ({ children }: Props) => {
   return (
     <Container sx={{ display: 'flex', height: '100vh', width: '100%' }}>
-      
+      {children}
     </Container>
   );
 };

@@ -1,30 +1,39 @@
-import { Card, CardContent, List, Typography } from '@mui/material';
-import { PetListItem } from '../pet-list-item';
+import { CircularProgress, List, Typography } from '@mui/material';
 
+import { PetListItem } from '../pet-list-item';
+import { PetListTemplate } from '../pet-list-template';
 import { TPetData } from '../pet-list-item/types';
 
 type Props = {
   items: TPetData[];
+  isLoading?: boolean;
+  hasError?: boolean;
   onClick: (id: string) => void;
 };
 
-export const PetList = ({ items, onClick }: Props) => {
+export const PetList = ({ items, isLoading, hasError, onClick }: Props) => {
+  if (isLoading) {
+    return (
+      <PetListTemplate>
+        <CircularProgress size={32} color="primary" />
+      </PetListTemplate>
+    );
+  }
+  if (hasError) {
+    return (
+      <PetListTemplate>
+        <Typography variant="body1">Failed to get pets</Typography>
+      </PetListTemplate>
+    );
+  }
+
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h4" mb={3}>
-          Pet list
-        </Typography>
-        <List>
-          {items.map(pet => (
-            <PetListItem
-              key={pet.id}
-              {...pet}
-              onClick={() => onClick(pet.id)}
-            />
-          ))}
-        </List>
-      </CardContent>
-    </Card>
+    <PetListTemplate>
+      <List>
+        {items.map(pet => (
+          <PetListItem key={pet.id} {...pet} onClick={() => onClick(pet.id)} />
+        ))}
+      </List>
+    </PetListTemplate>
   );
 };

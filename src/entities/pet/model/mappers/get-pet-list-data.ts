@@ -6,12 +6,23 @@ export const getPetListData = (data?: Pet[]) => {
     return undefined;
   }
 
-  const result: TPetData[] = data.map(item => ({
-    id: String(item.id),
-    name: item.name,
-    category: item.category?.name ?? 'N/A',
-    status: item.status ?? 'N/A',
-    photoURL: item.photoUrls.find(item => item),
-  }));
+  const result: TPetData[] = data.map(item => {
+    const photoURL = item.photoUrls?.find(link => {
+      try {
+        new URL(link);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+
+    return {
+      id: String(item.id),
+      name: item.name,
+      category: item.category?.name ?? 'N/A',
+      status: item.status ?? 'N/A',
+      photoURL,
+    };
+  });
   return result;
 };

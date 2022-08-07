@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { ThemeProvider } from '@shared/ui';
+import { HomePageConnector } from '@pages/home';
 
 import { App } from './app';
 
@@ -10,7 +11,9 @@ export const AppConnector = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <App />
+        <App>
+          <HomePageConnector />
+        </App>
       </ThemeProvider>
     </QueryClientProvider>
   );
