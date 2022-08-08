@@ -5,7 +5,7 @@ type Props = { children?: ReactNode };
 
 export const PetListTemplate = ({ children }: Props) => {
   return (
-    <Card>
+    <Card elevation={0} variant="outlined">
       <CardContent>
         <Typography variant="h4" mb={3}>
           Pet list

@@ -15,7 +15,11 @@ export const PetList = ({ items, isLoading, hasError, onClick }: Props) => {
   if (isLoading) {
     return (
       <PetListTemplate>
-        <CircularProgress size={32} color="primary" />
+        <CircularProgress
+          sx={{ flex: 1, m: 'auto' }}
+          size={48}
+          color="primary"
+        />
       </PetListTemplate>
     );
   }
