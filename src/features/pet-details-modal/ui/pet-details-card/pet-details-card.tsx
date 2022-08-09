@@ -48,7 +48,9 @@ export const PetDetailsCard = ({
           loading={isDeleting}
           onClick={onDelete}
           color="error"
-          size="small"
+          size="large"
+          variant="contained"
+          disableElevation
         >
           Delete pet
         </LoadingButton>

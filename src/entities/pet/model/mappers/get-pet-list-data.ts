@@ -17,7 +17,7 @@ export const getPetListData = (data?: Pet[]) => {
     });
 
     return {
-      id: String(item.id),
+      id: item.id ?? -1,
       name: item.name,
       category: item.category?.name ?? 'N/A',
       status: item.status ?? 'N/A',

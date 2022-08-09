@@ -2,12 +2,12 @@ import { Pet } from '@shared/api/axios-client';
 import { TPetDetails } from '@features/pet-details-modal/ui/pet-details-card/types';
 
 type Params = {
-  id: number;
+  id?: number;
   pets?: Pet[];
 };
 
 export const getPetDetailsById = ({ id, pets }: Params) => {
-  if (!pets || pets.length === 0) {
+  if (!id || !pets || pets.length === 0) {
     return undefined;
   }
 

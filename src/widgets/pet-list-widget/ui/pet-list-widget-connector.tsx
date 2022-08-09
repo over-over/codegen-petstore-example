@@ -9,10 +9,12 @@ import { getPetDetailsById } from '@features/pet-details-modal/model/mappers/get
 type Props = {};
 
 export const PetListWidgetConnector = ({}: Props) => {
-  const [selectedPetId, setSelectedPetId] = useState<number | null>(null);
+  const [selectedPetId, setSelectedPetId] = useState<number | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { data, isLoading, isError } = useGetPetsByStatus('available');
   const { mutateAsync, isLoading: isFetchingDeletion } = useDeletePet();
+
   const items = getPetListData(data?.data) ?? [];
   const selectedPetDetails = getPetDetailsById({
     id: selectedPetId,
@@ -24,7 +26,18 @@ export const PetListWidgetConnector = ({}: Props) => {
   };
 
   const onDeletePet = () => {
-    mutateAsync(123);
+    if (selectedPetId) {
+      mutateAsync(selectedPetId, {
+        onSettled: () => {
+          setIsModalOpen(false);
+        },
+      });
+    }
+  };
+
+  const onClickPet = (id: number) => {
+    setSelectedPetId(id);
+    setIsModalOpen(true);
   };
 
   return (
@@ -40,7 +53,7 @@ export const PetListWidgetConnector = ({}: Props) => {
         items={items}
         isLoading={isLoading}
         hasError={isError}
-        onClick={() => {}}
+        onClick={onClickPet}
       />
     </>
   );
