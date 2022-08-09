@@ -8,7 +8,7 @@ type Props = {
   items: TPetData[];
   isLoading?: boolean;
   hasError?: boolean;
-  onClick: (id: string) => void;
+  onClick: (id: number) => void;
 };
 
 export const PetList = ({ items, isLoading, hasError, onClick }: Props) => {

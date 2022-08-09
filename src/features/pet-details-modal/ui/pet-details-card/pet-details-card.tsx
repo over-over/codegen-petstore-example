@@ -7,13 +7,9 @@ import {
   CardActions,
 } from '@mui/material';
 
-type Props = {
-  id: string;
-  name: string;
-  photoURL?: string;
-  category: string;
-  status: string;
-  tags: string[];
+import { TPetDetails } from './types';
+
+type Props = TPetDetails & {
   isDeleting?: boolean;
   onDelete: () => void;
 };
@@ -52,7 +48,9 @@ export const PetDetailsCard = ({
           loading={isDeleting}
           onClick={onDelete}
           color="error"
-          size="small"
+          size="large"
+          variant="contained"
+          disableElevation
         >
           Delete pet
         </LoadingButton>

@@ -1,9 +1,8 @@
 export type TPetData = {
-  id: string;
+  id: number;
 } & TPetInfo;
 
 export type TPetInfo = {
-  id: string;
   photoURL?: string;
   name: string;
   category: string;
