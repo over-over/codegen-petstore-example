@@ -1,16 +1,22 @@
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
-import { getPetListData, useGetPetsByStatus } from '@entities/pet';
-import { PetList } from '@entities/pet/ui';
-import { PetDetailsModal } from '@features/pet-details-modal';
-import { useDeletePet } from '@features/pet-details-modal/model/hooks/use-delete-pet';
-import { getPetDetailsById } from '@features/pet-details-modal/model/mappers/get-pet-details-by-id';
+import {
+  getPetListData,
+  useGetPetsByStatus,
+  PetList,
+  PET_QUERY_KEYS,
+} from '@entities/pet';
+import {
+  PetDetailsModal,
+  getPetDetailsById,
+  useDeletePet,
+} from '@features/pet-details-modal';
 
-type Props = {};
-
-export const PetListWidgetConnector = ({}: Props) => {
+export const PetListWidgetConnector = () => {
   const [selectedPetId, setSelectedPetId] = useState<number | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useGetPetsByStatus('available');
   const { mutateAsync, isLoading: isFetchingDeletion } = useDeletePet();
@@ -30,6 +36,7 @@ export const PetListWidgetConnector = ({}: Props) => {
       mutateAsync(selectedPetId, {
         onSettled: () => {
           setIsModalOpen(false);
+          queryClient.invalidateQueries(PET_QUERY_KEYS.list());
         },
       });
     }
