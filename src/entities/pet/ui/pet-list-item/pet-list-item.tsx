@@ -3,8 +3,9 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
+  ListItemIcon,
 } from '@mui/material';
-import { Pets } from '@mui/icons-material';
+import { ChevronRight, Pets } from '@mui/icons-material';
 import styled from '@emotion/styled';
 
 import { TPetInfo } from './types';
@@ -39,6 +40,9 @@ export const PetListItem = ({
         <Avatar>{avatarImage}</Avatar>
       </ListItemAvatar>
       <ListItemText primary={name} secondary={petInfo} />
+      <ListItemIcon sx={{ minWidth: 24 }}>
+        <ChevronRight />
+      </ListItemIcon>
     </ListItemButton>
   );
 };

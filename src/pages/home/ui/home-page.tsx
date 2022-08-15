@@ -15,14 +15,13 @@ type Props = {
 export const HomePage = ({ petListSlot }: Props) => {
   return (
     <PageWrapper>
-      <Container sx={{ px: 3, pt: 3, pb: 6 }}>
-        <Card elevation={0} variant="outlined" sx={{ mb: 3 }}>
-          <CardContent>
-            <Typography variant="h5">
-              Welcome to React Query + opeanapitools codegen demo!
-            </Typography>
-          </CardContent>
-        </Card>
+      <Container maxWidth="sm" sx={{ px: 3, pt: 3, pb: 6 }}>
+        <Typography variant="h2" fontWeight={700}>
+          Petstore
+        </Typography>
+        <Typography mb={4} variant="h5" color="text.secondary">
+          React Query and OpenAPI generator demo
+        </Typography>
         {petListSlot}
       </Container>
     </PageWrapper>
