@@ -15,23 +15,21 @@ const CardImage = styled(CardMedia)`
   color: ${({ theme }) => theme.palette.primary.dark};
   background-color: ${({ theme }) => theme.palette.primary.light};
 
-  &::before {
-    display: block;
-    position: absolute;
-    content: '';
-    background-color: ${({ theme }) => theme.palette.primary.light};
-    width: 100%;
-    height: 100%;
-  }
   &::after {
-    display: block;
-    padding: 16px;
     position: absolute;
-    content: 'Failed to load image ' attr(alt);
+    content: 'Failed to load image for ' attr(alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background-color: ${({ theme }) => theme.palette.primary.light};
   }
 ` as typeof CardMedia;
 
